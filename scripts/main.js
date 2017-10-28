@@ -11,6 +11,7 @@
 
 
 /* 
+Assumptions are that I know I will have an array of characters that represent cards in the "hand" parameter
 set a new variable called total or handValue to 0
 loop over an array of cards
 	
@@ -28,6 +29,8 @@ let hand = []
 function handValue (hand) {
 	let sum = 0
 	for (let i=0;i<hand.length; i++){
+	// can include another "let" statement to avoid typing "hand[i]"
+	// let card = hand[i]  -> replace hand[i] with card
 		if (hand[i] === "K" || hand[i] === "Q" || hand[i] === "J"){
 			sum+=10
 		}
@@ -47,6 +50,49 @@ function handValue (hand) {
   	sum-=10
   }
   return sum
+}
+
+
+/*----------------------------------------------------------------
+
+.reduce method
+
+
+
+function addCardValue (total,card) {
+	if (card === "K" || card === "Q" || card === "J"){
+		return total +10;
+	}
+	else if (card === "A") {
+		return total+11;
+	}
+	else {
+		return total + parseInt(card)
+	}
+}
+
+function countAces(total,card) {
+	if (card === 'A') {
+		return total + 1;
+	}
+	else {
+		return total;
+	}
+}
+
+function handValueReduce (hand) {
+
+	let total = hand.reduce(addCardValue, 0);
+
+	let aceCount = hand.reduce(countAces, 0);
+
+	while (total > 21 && aceCount > 0) {
+		total = total - 10;
+		aceCount = aceCount-1;
+	}
+  }
+
+	return total;
 }
 
 
